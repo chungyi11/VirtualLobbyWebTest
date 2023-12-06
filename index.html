@@ -119,9 +119,11 @@
             // performance, uncomment the following line:
             // config.devicePixelRatio = 1;
 
-            // For Android, set default orientation to landscape
+            // For Android, force landscape orientation
             if (/Android/i.test(navigator.userAgent)) {
-                document.documentElement.style.setProperty('orientation', 'landscape');
+                screen.orientation.lock("landscape-primary").catch(function(error) {
+                    console.error('Could not lock screen orientation:', error);
+                });
             }
         } else {
             // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
