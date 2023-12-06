@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -8,8 +7,7 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <style>
-        body,
-        html {
+        body, html {
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -32,7 +30,6 @@
         }
     </style>
 </head>
-
 <body>
     <div id="unity-container" class="unity-desktop">
         <!-- Remove fixed width and height, set dynamically -->
@@ -87,7 +84,7 @@
             if (type == 'error') div.style = 'background: red; padding: 10px;';
             else {
                 if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                setTimeout(function () {
+                setTimeout(function() {
                     warningBanner.removeChild(div);
                     updateBannerVisibility();
                 }, 5000);
@@ -122,9 +119,9 @@
             // performance, uncomment the following line:
             // config.devicePixelRatio = 1;
 
-            // For Android, force landscape orientation using CSS
+            // For Android, set default orientation to landscape
             if (/Android/i.test(navigator.userAgent)) {
-                document.styleSheets[0].insertRule('@media screen and (orientation: portrait) { body { transform: rotate(-90deg); transform-origin: left top; width: 100vh; height: 100vw; overflow-x: hidden; position: absolute; top: 100%; left: 0; } }', 0);
+                document.documentElement.style.setProperty('orientation', 'landscape');
             }
         } else {
             // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
@@ -153,5 +150,4 @@
         document.body.appendChild(script);
     </script>
 </body>
-
 </html>
