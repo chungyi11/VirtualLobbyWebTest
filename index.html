@@ -6,6 +6,24 @@
     <title>Unity WebGL Player | Virtual Lobby</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+
+   <!-- Include Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js"></script>
+
+    <!-- Your Firebase configuration -->
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCAyuGNvIiBzOVG9gs9nsQCiJNCGXYq9-Y",
+        authDomain: "virtual-lobby-59d0a.firebaseapp.com",
+        projectId: "virtual-lobby-59d0a",
+        storageBucket: "virtual-lobby-59d0a.appspot.com",
+        messagingSenderId: "111012517403",
+        appId: "1:111012517403:android:b33912d7250f3afe06cabe"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
