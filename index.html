@@ -279,6 +279,27 @@ function StopMic()
 
 	unityInstance.SendMessage("Managers", "NotifyRecordingChange", MicState.NotActive);
 }
+
+function SetDefaultRecordingDevice() {
+    // Example: Get a list of available devices
+    navigator.mediaDevices.enumerateDevices()
+        .then(devices => {
+            const audioDevices = devices.filter(device => device.kind === 'audioinput');
+            if (audioDevices.length > 0) {
+                // Set the default recording device to the first available audio input device
+                const defaultDevice = audioDevices[0].deviceId;
+                console.log('Default recording device set to:', defaultDevice);
+                return true;
+            } else {
+                console.log('No audio input devices found.');
+                return false;
+            }
+        })
+        .catch(error => {
+            console.error('Error enumerating devices:', error);
+            return false;
+        });
+}
  </script>
 
 </body>
