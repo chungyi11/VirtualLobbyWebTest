@@ -195,7 +195,7 @@ const MicState =
 // called from WebMic.jslib's Recording_Start()
 function StartMic()
 {
-	unityInstance.SendMessage("Managers", "NotifyRecordingChange", MicState.Booting);
+	unityInstance.SendMessage("AnnouncementManager", "NotifyRecordingChange", MicState.Booting);
 	
 	if (!navigator.getUserMedia)
 	{
@@ -216,7 +216,7 @@ function StartMic()
 			},
 			function (e)
 			{
-				unityInstance.SendMessage("Managers", "NotifyRecordingChange", MicState.NotActive);
+				unityInstance.SendMessage("AnnouncementManager", "NotifyRecordingChange", MicState.NotActive);
 				alert('Error capturing audio.');
 			}
 		);
@@ -224,7 +224,7 @@ function StartMic()
 	else
 	{
 		alert('getUserMedia not supported in this browser.');
-		unityInstance.SendMessage("Managers", "NotifyRecordingChange", MicState.NotActive);
+		unityInstance.SendMessage("AnnouncementManager", "NotifyRecordingChange", MicState.NotActive);
 	}
 }
 
@@ -251,7 +251,7 @@ function start_microphone(stream)
 	{
 		dstPtr = floatPCMPointer;
 		floatPCM = e.inputBuffer.getChannelData(0);
-		unityInstance.SendMessage("Managers", "LogWrittenBuffer", floatPCM.length);
+		unityInstance.SendMessage("AnnouncementManager", "LogWrittenBuffer", floatPCM.length);
 
 		writeTarg = new Float32Array(unityInstance.Module.HEAP8.buffer, dstPtr, bufferSize);
 		writeTarg.set(floatPCM);
@@ -261,7 +261,7 @@ function start_microphone(stream)
 	microphone_stream.connect(recorder);
 	recorder.connect(audioContext.destination)
 
-	unityInstance.SendMessage("Managers", "NotifyRecordingChange", MicState.Recording);
+	unityInstance.SendMessage("AnnouncementManager", "NotifyRecordingChange", MicState.Recording);
 }
 
 // called from WebMic.jslib's Recording_Stop()
@@ -277,7 +277,7 @@ function StopMic()
 	recorder = null;
 	microphone_stream = null;
 
-	unityInstance.SendMessage("Managers", "NotifyRecordingChange", MicState.NotActive);
+	unityInstance.SendMessage("AnnouncementManager", "NotifyRecordingChange", MicState.NotActive);
 }
 
 function SetDefaultRecordingDevice() {
