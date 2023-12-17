@@ -232,7 +232,7 @@ function StartMic()
 function start_microphone(stream)
 {
 	// Match Unity's. Personal testing shows it default to 48000
-	audioContext = new AudioContext({"sampleRate": 48000});
+	audioContext = new AudioContext({"sampleRate": 44100});
 	microphone_stream = audioContext.createMediaStreamSource(stream);
 
 	const bufferSize = 2048;			// This must agree with the buffer size for WebMic
