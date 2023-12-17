@@ -23,6 +23,16 @@
             height: 100%;
         }
 
+        #virtual-keyboard-container {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f0f0f0;
+            border-top: 1px solid #ccc;
+        }
+
         canvas {
             display: block;
             width: 100%;
@@ -50,6 +60,28 @@
         const database = firebase.database();
 
     </script>
+
+    <script>
+        // Function to show/hide the virtual keyboard
+        function toggleVirtualKeyboard() {
+            var keyboardContainer = document.getElementById('virtual-keyboard-container');
+            keyboardContainer.style.display = (keyboardContainer.style.display === 'none') ? 'block' : 'none';
+        }
+
+function onInputFieldFocus() {
+    // Check if the user agent contains "Android"
+    if (navigator.userAgent.toLowerCase().includes("android")) {
+        toggleVirtualKeyboard();
+    }
+}
+
+function onInputFieldBlur() {
+    // Check if the user agent contains "Android"
+    if (navigator.userAgent.toLowerCase().includes("android")) {
+        toggleVirtualKeyboard();
+    }
+}
+    </script>
 </head>
 <body>
     <div id="unity-container" class="unity-desktop">
@@ -66,6 +98,22 @@
             <div id="unity-webgl-logo"></div>
             <div id="unity-fullscreen-button"></div>
             <div id="unity-build-title">Virtual Lobby</div>
+
+    <!-- Add an input field that will trigger the virtual keyboard -->
+    <input type="text" id="input-field" onfocus="onInputFieldFocus()" onblur="onInputFieldBlur()" />
+
+    <!-- Add the virtual keyboard container -->
+    <div id="virtual-keyboard-container">
+        <!-- Unity WebGL canvas (your existing Unity WebGL setup) -->
+
+        <!-- Virtual keyboard buttons -->
+        <button onclick="unityInstance.SendMessage('VirtualKeyboardController', 'PressKey', 'A')">A</button>
+        <button onclick="unityInstance.SendMessage('VirtualKeyboardController', 'PressKey', 'B')">B</button>
+        <!-- Add more buttons for other keys -->
+
+        <!-- Backspace button -->
+        <button onclick="unityInstance.SendMessage('VirtualKeyboardController', 'Backspace')">Backspace</button>
+
         </div>
     </div>
     <script>
